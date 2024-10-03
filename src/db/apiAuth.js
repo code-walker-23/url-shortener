@@ -7,6 +7,8 @@ export async function login({ email, password }) {
   });
 
   if (error) throw new Error(error.message);
+
+  return data;
 }
 
 export async function getCurrentUser() {

@@ -25,6 +25,7 @@ const Login = () => {
   const navigate = useNavigate();
   let [searchParams] = useSearchParams();
   const { fetchUser } = UrlState();
+  console.log(fetchUser);
 
   console.log(searchParams, searchParams.get("createNew"));
   const longLink = searchParams.get("createNew");
@@ -46,13 +47,17 @@ const Login = () => {
   } = useFetch(login, formData);
 
   useEffect(() => {
-    console.log(data);
+    console.log("Data:", data);
+    console.log("Error:", error);
+
     if (error == null && data) {
-      console.log("hello");
-      navigate(`/dashboard${longLink ? `createNew=${longLink}` : ""}`);
       fetchUser();
+      console.log("Navigating to dashboard...");
+      navigate(`/dashboard?${longLink ? `createNew=${longLink}` : ""}`);
     }
   }, [data, error]);
+
+  console.log(data);
 
   const handleLogin = async () => {
     setErrors({});
