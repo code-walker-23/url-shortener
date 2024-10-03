@@ -6,7 +6,7 @@ import Auth from "./pages/auth";
 import Dashboard from "./pages/dashboard";
 import Link from "./pages/link";
 import Redirect from "./pages/redirect";
-
+import UrlProvider from "./context/context";
 const router = createBrowserRouter([
   {
     element: <AppLayout />,
@@ -17,7 +17,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard",
-        element: <Dashboard/>,
+        element: <Dashboard />,
       },
       {
         path: "/auth",
@@ -26,7 +26,7 @@ const router = createBrowserRouter([
       {
         path: "/link/:id",
         element: <Link />,
-      }, 
+      },
       {
         path: "/:id",
         element: <Redirect />,
@@ -35,7 +35,11 @@ const router = createBrowserRouter([
   },
 ]);
 function App() {
-  return <RouterProvider router={router} />
+  return (
+    <UrlProvider>
+      <RouterProvider router={router} />;
+    </UrlProvider>
+  );
 }
 
 export default App;
