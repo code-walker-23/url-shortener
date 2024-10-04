@@ -11,10 +11,10 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { LinkIcon, LogOut } from "lucide-react";
-
+import { UrlState } from "@/context/context";
 const Header = () => {
   const navigate = useNavigate();
-  const user = true;
+  const { user } = UrlState();
   return (
     <nav className="py-4 flex justify-between items-center">
       <Link to="/">
@@ -22,18 +22,18 @@ const Header = () => {
       </Link>
 
       <div>
-        {user ? (
+        {!user ? (
           <Button onClick={() => navigate("/auth")}> Login </Button>
         ) : (
           <DropdownMenu>
             <DropdownMenuTrigger className="w-10 rounded-full overflow-hidden">
               <Avatar>
-                <AvatarImage src="https://github.com/shadcn.png" />
+                <AvatarImage src={user?.user_metadat?.profile_pic} />
                 <AvatarFallback>VC</AvatarFallback>
               </Avatar>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
-              <DropdownMenuLabel>Vinay Chhabra</DropdownMenuLabel>
+              <DropdownMenuLabel>{user?.user_metadat?.name}</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuItem>
                 <LinkIcon className="mr-2 h-4 w-4" />

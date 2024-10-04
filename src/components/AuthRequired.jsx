@@ -11,9 +11,14 @@ const AuthRequired = ({ children }) => {
     if (!isAuthenticated && !loading) {
       navigate(`/auth`);
     }
-    if (loading) return <BarLoader width={"100%"} color="#36d7b7" />;
-    if (isAuthenticated) return children;
   }, [isAuthenticated, loading]);
+
+  // Return loading spinner or children
+  if (loading) return <BarLoader width={"100%"} color="#36d7b7" />;
+  if (!isAuthenticated) return null; // or some other fallback UI
+
+  return children;
 };
+
 
 export default AuthRequired;
