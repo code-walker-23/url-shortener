@@ -22,7 +22,7 @@ const Header = () => {
       </Link>
 
       <div>
-        {!user ? (
+        {user ? (
           <Button onClick={() => navigate("/auth")}> Login </Button>
         ) : (
           <DropdownMenu>

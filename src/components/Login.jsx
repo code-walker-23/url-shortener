@@ -25,11 +25,8 @@ const Login = () => {
   const navigate = useNavigate();
   let [searchParams] = useSearchParams();
   const { fetchUser } = UrlState();
-  console.log(fetchUser);
 
-  console.log(searchParams, searchParams.get("createNew"));
   const longLink = searchParams.get("createNew");
-  console.log(longLink);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -47,9 +44,6 @@ const Login = () => {
   } = useFetch(login, formData);
 
   useEffect(() => {
-    console.log("Data:", data);
-    console.log("Error:", error);
-
     if (error == null && data) {
       fetchUser();
       console.log("Navigating to dashboard...");

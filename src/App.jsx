@@ -7,6 +7,7 @@ import Dashboard from "./pages/dashboard";
 import Link from "./pages/link";
 import Redirect from "./pages/redirect";
 import UrlProvider from "./context/context";
+import AuthRequired from "./components/AuthRequired";
 const router = createBrowserRouter([
   {
     element: <AppLayout />,
@@ -17,7 +18,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard",
-        element: <Dashboard />,
+        element: (
+          <AuthRequired>
+            <Dashboard />
+          </AuthRequired>
+        ),
       },
       {
         path: "/auth",
@@ -25,7 +30,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/link/:id",
-        element: <Link />,
+        element: (
+          <AuthRequired>
+            <Link />
+          </AuthRequired>
+        ),
       },
       {
         path: "/:id",
